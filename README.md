@@ -1,8 +1,5 @@
-# event_channel_sample
+# Event Channel Sample
 
-A new Flutter project.
+A simple project to demonstrate how to emit events from native code to then be consumed by Flutter/Dart.
 
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](http://flutter.io/).
+![Screenshot](images/flutter_01.png?raw=true "Screenshot")
