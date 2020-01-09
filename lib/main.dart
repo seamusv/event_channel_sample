@@ -3,17 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Event Channel Sample',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Event and Method Channel Sample'),
+      home: MyHomePage(title: 'Event and Method Channel Sample'),
     );
   }
 }
@@ -24,15 +24,14 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const stream =
-      const EventChannel('com.yourcompany.eventchannelsample/stream');
+  static const stream = const EventChannel('com.yourcompany.eventchannelsample/stream');
 
   int _timer = 0;
-  StreamSubscription _timerSubscription = null;
+  StreamSubscription _timerSubscription;
 
   void _enableTimer() {
     if (_timerSubscription == null) {
@@ -54,39 +53,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var timerCard = new Card(
-        child: new Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+    var timerCard = Card(
+        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
       const ListTile(
         leading: const Icon(Icons.timer),
         title: const Text('Event and Method Channel Sample'),
-        subtitle: const Text(
-            'An example application showing off the communications between Flutter and native Android.'),
+        subtitle: const Text('An example application showing off the communications between Flutter and native Android.'),
       ),
-      new Center(
-        child: new Text(
+      Center(
+        child: Text(
           '$_timer',
           style: Theme.of(context).textTheme.display1,
         ),
       ),
-      new ButtonTheme.bar(
-          child: new ButtonBar(children: <Widget>[
-        new FlatButton(
+      ButtonBar(children: <Widget>[
+        FlatButton(
           child: const Text('Enable'),
           onPressed: _enableTimer,
         ),
-        new FlatButton(
+        FlatButton(
           child: const Text('Disable'),
           onPressed: _disableTimer,
         ),
-      ]))
+      ]),
     ]));
 
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(widget.title),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-        body: new Container(
-          padding: new EdgeInsets.all(8.0),
+        body: Container(
+          padding: EdgeInsets.all(8.0),
           child: timerCard,
         ));
   }
